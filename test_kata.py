@@ -16,11 +16,11 @@ def test_detect_ones():
 
 
 def test_detect_horizontal_twos():
-    assert kata.detect_hor_twos(battleField) == 2
+    assert kata.detect_hor_twos(battleField) == 1
 
 
 def test_detect_vertical_twos():
-    assert kata.detect_vert_twos(battleField) == 1
+    assert kata.detect_vert_twos(battleField) == 2
 
 
 def test_detect_horizontal_threes():
