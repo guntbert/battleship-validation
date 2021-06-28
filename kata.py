@@ -14,6 +14,7 @@ def detect_hor_threes(field):
     count = 0
     for y,row in enumerate(field):
         for x,item in enumerate(row[:-2]):
+            # print(f"+ {y=}/{x=} {item=} {field[y][x+1]=}  {field[y][x+2]=} {field[y][x+3]=}")
             if item == 1 \
                 and field[y][x+1] == 1 and field[y][x+2] ==0 and field[x+3] == 0 \
                 and neighbors_are_0_or_edge(field,[(y,x),(y,x+1), (y, x+2)]):
@@ -75,27 +76,27 @@ def neighbors_are_0_or_edge(field, poslist):
     if orientation == 'hor':
         # check 3 values on the left, 3 values on the right, above/below for all
         for index,pos in enumerate(poslist):
-            if len(poslist) >1:
-                print(f"{index=} {pos=}")
+            # if len(poslist) >1:
+                # print(f"{index=} {pos=}")
             if index == 0:
                 for y in range(max(pos[0]-1,0), min(pos[0]+1,len(field)-1)+1):
                     x = max(pos[1]-1,0)
-                    print("hor left",y,x)
+                    # print("hor left",y,x)
                     if field[y][x]  != 0:
-                        print("XX")
+                        # print("XX")
                         return False
             if index == len(poslist)-1:
                 for y in range(max(pos[0]-1,0), min(pos[0]+1,len(field)-1)+1):
                     x = min(pos[1]+1,len(field)-1)
                     print("hor right",y,x)
                     if field[y][x]  != 0:
-                        print("XX")
+                        # print("XX")
                         return False
             x = pos[1]
             for y in (max(pos[0]-1,0),min(pos[0]+1,len(field)-1)):
                 print("hor inner",y,x)
                 if field[y][x] != 0 and y != pos[0]:
-                    print("XX")
+                    # print("XX")
                     return False
     else:
         # check 3 values above, 3 values below, right/left for all
@@ -126,9 +127,9 @@ def validate_battlefield(field):
 # Rules
 # - ships must be straight (no corners)
 # - they may not touch/overlap
-    print(f"1-ships: {detect_ones(field)}")
-    print(f"horizontal 2-ships: {detect_hor_twos(field)}")
-    print(f"vertical 2-ships: {detect_vert_twos(field)}")
-    print(f"horizontal 3-ships: {detect_hor_threes(field)}")
-    print(f"vertical 3-ships: {detect_vert_threes(field)}")
+    # print(f"1-ships: {detect_ones(field)}")
+    # print(f"horizontal 2-ships: {detect_hor_twos(field)}")
+    # print(f"vertical 2-ships: {detect_vert_twos(field)}")
+    # print(f"horizontal 3-ships: {detect_hor_threes(field)}")
+    # print(f"vertical 3-ships: {detect_vert_threes(field)}")
     return True
