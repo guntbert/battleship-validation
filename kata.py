@@ -10,13 +10,13 @@ def detect_ones(field):
     return count
 
 def detect_hor_threes(field):
-    # '1' accompanied by a '1' to the right and then a '0'
+    # '1' accompanied by two '1' to the right and then a '0'
     count = 0
     for y,row in enumerate(field):
-        for x,item in enumerate(row[:-2]):
+        for x,item in enumerate(row[:-3]):
             # print(f"+ {y=}/{x=} {item=} {field[y][x+1]=}  {field[y][x+2]=} {field[y][x+3]=}")
             if item == 1 \
-                and field[y][x+1] == 1 and field[y][x+2] ==0 and field[x+3] == 0 \
+                and field[y][x+1] == 1 and field[y][x+2] ==1 and field[y][x+3] == 0 \
                 and neighbors_are_0_or_edge(field,[(y,x),(y,x+1), (y, x+2)]):
                 # print(f"+ {y=}/{x=}")
                 count += 1
@@ -25,10 +25,10 @@ def detect_hor_threes(field):
 def detect_vert_threes(field):
     # '1' accompanied by a '1' below and then a '0'
     count = 0
-    for y,row in enumerate(field[:-2]):
+    for y,row in enumerate(field[:-3]):
         for x,item in enumerate(row):
             if item == 1 \
-                and field[y+1][x] == 1 and field[y+2][x] == 0 and field[y+3][x] == 0\
+                and field[y+1][x] == 1 and field[y+2][x] == 1 and field[y+3][x] == 0\
                 and neighbors_are_0_or_edge(field,[(y,x),(y+1,x), (y+2,x)]):
                 # print(f"+ {y=}/{x=}")
                 count += 1
