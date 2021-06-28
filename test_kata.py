@@ -1,4 +1,5 @@
 import kata
+# This battlefield is not a valid one, I use it to test the detecting functions
 battleField =   [[1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
                  [1, 0, 1, 0, 0, 0, 0, 0, 1, 0],
                  [1, 0, 1, 0, 1, 1, 1, 0, 1, 0],
@@ -8,7 +9,7 @@ battleField =   [[1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
                  [0, 0, 0, 0, 0, 1, 0, 0, 1, 0],
                  [0, 0, 0, 1, 0, 1, 0, 0, 0, 0],
                  [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]]
+                 [1, 1, 1, 1, 0, 0, 0, 0, 0, 0]]
 # test.assert_equals(validate_battlefield(battleField), True, "Yep! Seems alright", "Nope, something is wrong!");
 
 def test_detect_ones():
@@ -28,4 +29,10 @@ def test_detect_horizontal_threes():
 
 def test_detect_vertical_threes():
     assert kata.detect_vert_threes(battleField) == 1
+
+def test_detect_horizontal_fours():
+    assert kata.detect_hor_fours(battleField) == 1
+
+def test_detect_vertical_fours():
+    assert kata.detect_vert_fours(battleField) == 1
 
