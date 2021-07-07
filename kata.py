@@ -1,6 +1,6 @@
 ships = {}
 
-def detect_ones(field):
+def count_ones(field):
     # '1' and only '0' (or edge) in all 8 positions around
     count = 0
     for y,row in enumerate(field):
@@ -10,11 +10,20 @@ def detect_ones(field):
     return count
 
 def count_hor_ships(field, size):
+    ''' size > 1 (for one-ships we still will use count_ones()) '''
     # '1' followed by size-1 '1' to the right and then a '0'
     count = 0
     for y,row in enumerate(field):
         for x,item in enumerate(row[:-size]):
             if item == 1:
+                # breakpoint()
+                check_positions = [(y, xx) for xx in range(x,x+size) ]
+                check_values = [field[y][xx] for xx in range(x,x+size)]
+                if 0 not in check_values \
+                        and field[y][x+size] == 0 \
+                        and neighbors_are_0_or_edge(field,check_positions):
+                    count += 1
+    return count
 
 # TODO
 
@@ -94,7 +103,8 @@ def neighbors_are_0_or_edge(field, poslist):
                     if field[y][x]  != 0:
                         # print("XX")
                         return False
-            if index == len(poslist)-1:
+            if index == len(poslist):
+                breakpoint()
                 for y in range(max(pos[0]-1,0), min(pos[0]+1,len(field)-1)+1):
                     x = min(pos[1]+1,len(field)-1)
                     print("hor right",y,x)
@@ -136,7 +146,7 @@ def validate_battlefield(field):
 # Rules
 # - ships must be straight (no corners)
 # - they may not touch/overlap
-    # print(f"1-ships: {detect_ones(field)}")
+    # print(f"1-ships: {count_ones(field)}")
     # print(f"horizontal 2-ships: {detect_hor_twos(field)}")
     # print(f"vertical 2-ships: {detect_vert_twos(field)}")
     # print(f"horizontal 3-ships: {detect_hor_threes(field)}")

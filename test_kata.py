@@ -14,8 +14,8 @@ battleField =   [[1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
                  [1, 1, 1, 1, 0, 0, 0, 0, 0, 0]]
 # test.assert_equals(validate_battlefield(battleField), True, "Yep! Seems alright", "Nope, something is wrong!");
 
-def test_detect_ones():
-    assert kata.detect_ones(battleField) == 4
+def test_count_ones():
+    assert kata.count_ones(battleField) == 4
 
 
 def test_detect_horizontal_twos():
