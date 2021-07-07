@@ -9,6 +9,15 @@ def detect_ones(field):
                 count += 1
     return count
 
+def count_hor_ships(field, size):
+    # '1' followed by size-1 '1' to the right and then a '0'
+    count = 0
+    for y,row in enumerate(field):
+        for x,item in enumerate(row[:-size]):
+            if item == 1:
+
+# TODO
+
 def detect_hor_threes(field):
     # '1' accompanied by two '1' to the right and then a '0'
     count = 0
