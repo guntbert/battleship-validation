@@ -16,16 +16,19 @@ def count_hor_ships(field, size):
     for y,row in enumerate(field):
         for x,item in enumerate(row[:-size]):
             if item == 1:
-                # breakpoint()
+                    # breakpoint()
                 check_positions = [(y, xx) for xx in range(x,x+size) ]
                 check_values = [field[y][xx] for xx in range(x,x+size)]
-                if 0 not in check_values \
-                        and field[y][x+size] == 0 \
-                        and neighbors_are_0_or_edge(field,check_positions):
-                    count += 1
+                if size == 4:
+                    print(f"{check_positions=}  ~ {check_values=}")
+                if 0 not in check_values:
+                    if field[y][x+size] == 0 :
+                        if neighbors_are_0_or_edge(field,check_positions):
+                            print(f'before inc: {count}')
+                            count += 1
+                            print(f'after inc: {count}')
     return count
 
-# TODO
 
 def detect_hor_threes(field):
     # '1' accompanied by two '1' to the right and then a '0'
@@ -92,6 +95,7 @@ def neighbors_are_0_or_edge(field, poslist):
     orientation = get_orientation(poslist)
     # print(f"{poslist =};{orientation =}")
     if orientation == 'hor':
+        # breakpoint()
         # check 3 values on the left, 3 values on the right, above/below for all
         for index,pos in enumerate(poslist):
             # if len(poslist) >1:
@@ -104,7 +108,6 @@ def neighbors_are_0_or_edge(field, poslist):
                         # print("XX")
                         return False
             if index == len(poslist):
-                breakpoint()
                 for y in range(max(pos[0]-1,0), min(pos[0]+1,len(field)-1)+1):
                     x = min(pos[1]+1,len(field)-1)
                     print("hor right",y,x)
