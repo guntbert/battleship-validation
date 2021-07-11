@@ -12,7 +12,7 @@ def count_ones(field):
 
 
 def count_hor_ships(field, size):
-    ''' size > 1 (for one-ships we still will use count_ones()) '''
+    """ size > 1 (for one-ships we still will use count_ones()) """
     # '1' followed by size-1 '1' to the right and then a '0'
     count = 0
     for y, row in enumerate(field):
@@ -85,11 +85,11 @@ def detect_vert_twos(field):
 
 
 def get_orientation(poslist):
-    ''' 
+    """
     determine the orientation by checking the first two items
     they have either identical x- or y-values
     returns "hor" or "vert"
-    '''
+    """
     if len(poslist) < 2:
         return 'hor'  # in this case it doesn't matter 
     if poslist[0][0] != poslist[1][0]:
