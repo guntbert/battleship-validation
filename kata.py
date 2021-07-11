@@ -19,7 +19,7 @@ def count_hor_ships(field, size):
                     # breakpoint()
                 check_positions = [(y, xx) for xx in range(x,x+size) ]
                 check_values = [field[y][xx] for xx in range(x,x+size)]
-                if size == 4:
+                if size > 2:
                     print(f"{check_positions=}  ~ {check_values=}")
                 if 0 not in check_values:
                     if field[y][x+size] == 0 :
@@ -100,16 +100,16 @@ def neighbors_are_0_or_edge(field, poslist):
         for index,pos in enumerate(poslist):
             # if len(poslist) >1:
                 # print(f"{index=} {pos=}")
-            if index == 0:
+            if index == 0 and pos[1] > 0:   # we only need to check on the left side if we are no at the edge anyway
                 for y in range(max(pos[0]-1,0), min(pos[0]+1,len(field)-1)+1):
-                    x = max(pos[1]-1,0)
-                    # print("hor left",y,x)
+                    x = max(pos[1]-1,0) # TODO rhs should be simplified to just pos[1]
+                    print("hor left",y,x)
                     if field[y][x]  != 0:
                         # print("XX")
                         return False
-            if index == len(poslist):
+            if index == len(poslist)-1 and pos[1] < len(field) - 1:
                 for y in range(max(pos[0]-1,0), min(pos[0]+1,len(field)-1)+1):
-                    x = min(pos[1]+1,len(field)-1)
+                    x = min(pos[1]+1,len(field)-1)  # TODO same as before
                     print("hor right",y,x)
                     if field[y][x]  != 0:
                         # print("XX")
