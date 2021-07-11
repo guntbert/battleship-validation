@@ -28,6 +28,22 @@ def count_hor_ships(field, size):
     return count
 
 
+def count_vert_ships(field, size):
+    """ size > 1 (for one-ships we still will use count_ones()) """
+    # '1' followed by size-1 '1' below and then a '0'
+    count: int = 0
+    for y, row in enumerate(field[:-size]):
+        for x, item in enumerate(row):
+            if item == 1:
+                check_positions = [(yy, x) for yy in range(y, y + size)]
+                check_values = [field[yy][x] for yy in range(y, y + size)]
+                if 0 not in check_values \
+                        and field[y + size][x] == 0 \
+                        and neighbors_are_0_or_edge(field, check_positions):
+                    count += 1
+    return count
+
+
 def detect_hor_threes(field):
     # '1' accompanied by two '1' to the right and then a '0'
     count = 0

@@ -45,6 +45,14 @@ def test_detect_vertical_threes():
 def test_count_horizontal_ships(size, expected_count):
     assert kata.count_hor_ships(battleField, size) == expected_count
 
+@pytest.mark.parametrize("size, expected_count", [
+    (2, 2),
+    (3, 0),
+    (4, 1)
+])
+def test_count_vertical_ships(size, expected_count):
+    assert kata.count_vert_ships(battleField, size) == expected_count
+
 # def test_detect_horizontal_fours():
 #     assert kata.detect_hor_fours(battleField) == 1
 
