@@ -44,58 +44,6 @@ def count_vert_ships(field, size):
     return count
 
 
-def detect_hor_threes(field):
-    # '1' accompanied by two '1' to the right and then a '0'
-    count = 0
-    for y, row in enumerate(field):
-        for x, item in enumerate(row[:-3]):
-            # print(f"+ {y=}/{x=} {item=} {field[y][x+1]=}  {field[y][x+2]=} {field[y][x+3]=}")
-            if item == 1 \
-                    and field[y][x + 1] == 1 and field[y][x + 2] == 1 and field[y][x + 3] == 0 \
-                    and neighbors_are_0_or_edge(field, [(y, x), (y, x + 1), (y, x + 2)]):
-                # print(f"+ {y=}/{x=}")
-                count += 1
-    return count
-
-
-def detect_vert_threes(field):
-    # '1' accompanied by a '1' below and then a '0'
-    count = 0
-    for y, row in enumerate(field[:-3]):
-        for x, item in enumerate(row):
-            if item == 1 \
-                    and field[y + 1][x] == 1 and field[y + 2][x] == 1 and field[y + 3][x] == 0 \
-                    and neighbors_are_0_or_edge(field, [(y, x), (y + 1, x), (y + 2, x)]):
-                # print(f"+ {y=}/{x=}")
-                count += 1
-    return count
-
-
-def detect_hor_twos(field):
-    # '1' accompanied by a '1' to the right and then a '0'
-    count = 0
-    for y, row in enumerate(field):
-        for x, item in enumerate(row[:-2]):
-            if item == 1 \
-                    and field[y][x + 1] == 1 and field[y][x + 2] == 0 \
-                    and neighbors_are_0_or_edge(field, [(y, x), (y, x + 1)]):
-                # print(f"+ {y=}/{x=}")
-                count += 1
-    return count
-
-
-def detect_vert_twos(field):
-    # '1' accompanied by a '1' below and then a '0'
-    count = 0
-    for y, row in enumerate(field[:-2]):
-        for x, item in enumerate(row):
-            if item == 1 \
-                    and field[y + 1][x] == 1 and field[y + 2][x] == 0 \
-                    and neighbors_are_0_or_edge(field, [(y, x), (y + 1, x)]):
-                count += 1
-    return count
-
-
 def get_orientation(poslist):
     """
     determine the orientation by checking the first two items
@@ -169,9 +117,4 @@ def validate_battlefield(field):
     # Rules
     # - ships must be straight (no corners)
     # - they may not touch/overlap
-    # print(f"1-ships: {count_ones(field)}")
-    # print(f"horizontal 2-ships: {detect_hor_twos(field)}")
-    # print(f"vertical 2-ships: {detect_vert_twos(field)}")
-    # print(f"horizontal 3-ships: {detect_hor_threes(field)}")
-    # print(f"vertical 3-ships: {detect_vert_threes(field)}")
     return True
