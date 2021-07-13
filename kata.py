@@ -18,7 +18,6 @@ def count_hor_ships(field, size):
     for y, row in enumerate(field):
         for x, item in enumerate(row[:-size]):
             if item == 1:
-                # breakpoint()
                 check_positions = [(y, xx) for xx in range(x, x + size)]
                 check_values = [field[y][xx] for xx in range(x, x + size)]
                 if 0 not in check_values \
@@ -70,20 +69,20 @@ def neighbors_are_0_or_edge(field, poslist):
             if index == 0 and pos[1] > 0:  # we only need to check on the left side if we are not at the edge anyway
                 for y in range(max(pos[0] - 1, 0), min(pos[0] + 1, len(field) - 1) + 1):
                     x = pos[1] - 1
-                    print("hor left", y, x)
+                    # print("hor left", y, x)
                     if field[y][x] != 0:
                         # print("XX")
                         return False
             if index == len(poslist) - 1 and pos[1] < len(field) - 1:
                 for y in range(max(pos[0] - 1, 0), min(pos[0] + 1, len(field) - 1) + 1):
                     x = pos[1] + 1
-                    print("hor right", y, x)
+                    # print("hor right", y, x)
                     if field[y][x] != 0:
                         # print("XX")
                         return False
             x = pos[1]
             for y in (max(pos[0] - 1, 0), min(pos[0] + 1, len(field) - 1)):
-                print("hor inner", y, x)
+                # print("hor inner", y, x)
                 if field[y][x] != 0 and y != pos[0]:
                     # print("XX")
                     return False
