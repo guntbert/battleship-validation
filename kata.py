@@ -143,13 +143,13 @@ def neighbors_are_0_or_edge(field, poslist):
         # check 3 values above, 3 values below, right/left for all
         for index, pos in enumerate(poslist):
             # print(f"{index=} {pos=}")
-            if index == 0:
+            if index == 0 and pos[0] > 0:  # we only need to check on the top if we are not at the top edge anyway
                 for x in range(max(pos[1] - 1, 0), min(pos[1] + 1, len(field) - 1) + 1):
                     y = max(pos[0] - 1, 0)
                     # print("vert above",y,x)
                     if field[y][x] != 0:
                         return False
-            if index == len(poslist) - 1:
+            if index == len(poslist) - 1 and pos[0] < len(field) - 1:
                 for x in range(max(pos[1] - 1, 0), min(pos[1] + 1, len(field) - 1) + 1):
                     y = min(pos[0] + 1, len(field) - 1)
                     # print("vert below",y,x)
