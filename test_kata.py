@@ -3,17 +3,28 @@ import pytest
 import kata
 
 # This battlefield is not a valid one, I use it to test the detecting functions
-battleField = [[1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
-               [1, 0, 1, 0, 0, 0, 0, 0, 1, 0],
-               [1, 0, 1, 0, 1, 1, 1, 0, 1, 0],
-               [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-               [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
-               [0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
-               [0, 0, 0, 0, 0, 1, 0, 0, 1, 0],
-               [0, 0, 0, 1, 0, 1, 0, 0, 0, 0],
-               [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
-               [1, 1, 1, 1, 0, 0, 0, 0, 0, 0]]
+#battleField = [[1, 0, 0, 0, 0, 1, 1, 0, 0, 0],
+#               [1, 0, 1, 0, 0, 0, 0, 0, 1, 0],
+#               [1, 0, 1, 0, 1, 1, 1, 0, 1, 0],
+#               [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+#               [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+#               [0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
+#               [0, 0, 0, 0, 0, 1, 0, 0, 1, 0],
+#               [0, 0, 0, 1, 0, 1, 0, 0, 0, 0],
+#               [0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+#               [1, 1, 1, 1, 0, 0, 0, 0, 0, 0]]
 
+# This is a valid battlefield, from a random test
+battleField = [[0, 0, 1, 0, 1, 1, 1, 1, 0, 0],
+               [0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+               [1, 0, 0, 0, 0, 0, 1, 0, 1, 0],
+               [1, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+               [1, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+               [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+               [0, 1, 0, 0, 0, 0, 0, 0, 0, 1],
+               [0, 0, 0, 0, 0, 0, 1, 0, 0, 1],
+               [0, 0, 0, 0, 1, 0, 1, 0, 0, 0]]
 
 # test.assert_equals(validate_battlefield(battleField), True, "Yep! Seems alright", "Nope, something is wrong!");
 
@@ -22,8 +33,8 @@ def test_count_ones():
 
 
 @pytest.mark.parametrize("size, expected_count", [
-    (2, 1),
-    (3, 1),
+    (2, 0),
+    (3, 0),
     (4, 1)
 ])
 def test_count_horizontal_ships(size, expected_count):
@@ -31,9 +42,9 @@ def test_count_horizontal_ships(size, expected_count):
 
 
 @pytest.mark.parametrize("size, expected_count", [
-    (2, 2),
-    (3, 1),
-    (4, 1)
+    (2, 3),
+    (3, 2),
+    (4, 0)
 ])
 
 
