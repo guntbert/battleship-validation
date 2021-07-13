@@ -47,7 +47,7 @@ def test_count_horizontal_ships(size, expected_count):
 
 @pytest.mark.parametrize("size, expected_count", [
     (2, 2),
-    (3, 0),
+    (3, 1),
     (4, 1)
 ])
 def test_count_vertical_ships(size, expected_count):
