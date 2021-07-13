@@ -119,4 +119,4 @@ def validate_battlefield(field):
     return count_ones(field) == 4 \
         and count_hor_ships(field,2) + count_vert_ships(field,2) == 3 \
         and count_hor_ships(field,3) + count_vert_ships(field,3) == 2 \
-        and count_hor_ships(field,4) + count_vert_ships(field,4) == 1 \
+        and count_hor_ships(field,4) + count_vert_ships(field,4) == 1 
